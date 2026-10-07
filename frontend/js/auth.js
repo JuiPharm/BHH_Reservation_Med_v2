@@ -98,6 +98,10 @@ function initialize() {
   const body = document.body;
   const roles = (body.dataset.roles || '').split(',').filter(Boolean);
   const session = body.dataset.requiresAuth === 'true' ? requireAuth({ roles }) : getSession();
+  if (document.getElementById('login-form') && session) {
+    window.location.replace(loginSuccessDestination());
+    return;
+  }
   renderIdentity(session);
   installRoleAwareNavigation(session);
   installLogoFallbacks();
