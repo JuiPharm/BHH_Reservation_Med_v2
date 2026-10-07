@@ -7,8 +7,8 @@
   <a class="brand" href="dashboard.html"><img class="brand-logo" src="assets/bhh-hatyai-logo.webp" alt="Bangkok Hospital Hat Yai"><span class="brand-fallback" hidden>BHH Medication Reservation</span><span>BHH Medication Reservation</span></a>
   <nav class="site-nav" aria-label="เมนูหลัก">
     <a aria-current="page" href="dashboard.html">คิวงาน</a>
-    <a href="new-order.html">สร้างคำขอ</a>
-    <a href="admin.html" data-admin-only>ศูนย์เภสัชกรรม</a>
+    <a href="new-order.html" data-v2-pending>สร้างคำขอ</a>
+    <a href="admin.html" data-admin-only data-v2-pending>ศูนย์เภสัชกรรม</a>
     <button type="button" class="secondary" data-action="logout">ออกจากระบบ</button>
   </nav>
   <div class="identity" aria-label="ข้อมูลผู้ใช้"><span id="identity-name">—</span><span id="identity-staff-id">—</span><span id="identity-department">—</span><span id="identity-role">—</span></div>
@@ -17,7 +17,7 @@
   <section id="staff-dashboard" class="panel">
     <div class="page-hero">
       <div><p class="eyebrow">Medication Reservation & Fulfillment</p><h1 class="page-title">คิวงานจองยาเฉพาะราย</h1><p class="page-subtitle">ติดตามคำขอตั้งแต่รับคำขอ จัดหา/รอยา ยาพร้อม จนถึงการรับยา โดยแสดงสถานะเป็นภาษางานที่เข้าใจง่าย</p></div>
-      <div class="page-hero-actions"><a href="new-order.html"><button type="button" class="accent">+ สร้างคำขอใหม่</button></a></div>
+      <div class="page-hero-actions" data-v2-pending><a href="new-order.html"><button type="button" class="accent">+ สร้างคำขอใหม่</button></a></div>
     </div>
 
     <div id="dashboard-counts" class="dashboard-counts" aria-label="สรุปคิวงาน"></div>
