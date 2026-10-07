@@ -1,0 +1,18 @@
+body:has(.auth-layout){background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 52%,#315b9c 100%);}
+.auth-layout { width:100%; max-width:none; min-height:100vh; padding:1.2rem; display:grid; place-items:center; }
+.auth-shell { width:min(920px,94vw); display:grid; grid-template-columns:1.05fr .95fr; overflow:hidden; border-radius:1.8rem; background:#fff; box-shadow:0 30px 80px rgba(8,28,59,.28); }
+.auth-brand-panel { padding:2.4rem; background:linear-gradient(180deg,#fff,#eef5fd); display:flex; flex-direction:column; justify-content:center; }
+.auth-brand-panel img { width:min(24rem,100%); height:auto; }
+.auth-brand-panel h1 { margin:1.4rem 0 .45rem; color:var(--primary); font-size:clamp(1.65rem,3vw,2.2rem); }
+.auth-brand-panel p { margin:0; color:var(--muted); line-height:1.7; }
+.auth-brand-kicker { color:var(--accent); font-size:.75rem; font-weight:900; letter-spacing:.09em; text-transform:uppercase; }
+.auth-panel { width:100%; margin:0; border:0; border-radius:0; box-shadow:none; padding:2.5rem; display:flex; flex-direction:column; justify-content:center; }
+.auth-panel h2 { margin:0; color:var(--primary); font-size:1.55rem; }
+.auth-panel .subtitle { color:var(--muted); margin:.4rem 0 1.2rem; font-size:.88rem; }
+.field { display:grid; gap:.35rem; margin:.85rem 0; color:#294864; font-size:.85rem; font-weight:800; }
+.field input { width:100%; border:1px solid var(--border); border-radius:.85rem; padding:.75rem .85rem; background:#fff; }
+.field input:focus { outline:0; border-color:var(--border-focus); box-shadow:0 0 0 3px var(--focus); }
+.auth-panel [type="submit"] { width:100%; min-height:48px; margin-top:.75rem; }
+.auth-security-note { display:flex; gap:.5rem; margin-top:1rem; padding:.75rem; border-radius:.8rem; background:#f5f8fc; color:var(--muted); font-size:.75rem; line-height:1.5; }
+
+@media(max-width:700px){body:has(.auth-layout){background:#f4f7fb}.auth-layout{padding:0;place-items:stretch}.auth-shell{width:100%;min-height:100vh;border-radius:0;grid-template-columns:1fr}.auth-brand-panel{padding:1.5rem 1.25rem;background:linear-gradient(180deg,var(--primary),var(--primary-dark));color:#fff}.auth-brand-panel img{width:min(21rem,100%)}.auth-brand-panel h1{color:#fff;margin-top:1rem;font-size:1.5rem}.auth-brand-panel p{color:rgba(255,255,255,.82)}.auth-brand-kicker{color:#ffd7dc}.auth-panel{padding:1.8rem 1.25rem}}
