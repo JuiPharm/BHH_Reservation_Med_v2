@@ -44,7 +44,7 @@ function frontendSources() {
 function requestedActions(source) {
   const actions = new Set();
   for (const match of source.matchAll(/(?:apiRequest|request)\(\s*['"]([A-Z0-9_]+)['"]/gu)) actions.add(match[1]);
-  for (const match of source.matchAll(/requestAction\s*=\s*[^;]*?['"]([A-Z0-9_]+)['"][^;]*?['"]([A-Z0-9_]+)['"]/gu)) {
+  for (const match of source.matchAll(/requestAction\s*=\s*action\s*===\s*['"]NO_SHOW['"]\s*\?\s*['"]([A-Z0-9_]+)['"]\s*:\s*['"]([A-Z0-9_]+)['"]/gu)) {
     actions.add(match[1]);
     actions.add(match[2]);
   }
