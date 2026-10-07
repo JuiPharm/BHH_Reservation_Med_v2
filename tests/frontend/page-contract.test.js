@@ -4,11 +4,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '../..');
-const pages = [
-  'index.html', 'login.html', 'dashboard.html', 'new-order.html', 'order-detail.html',
-  'edit-order.html', 'reschedule.html', 'appointment-action.html', 'admin.html',
+const authPages = ['index.html', 'login.html'];
+const appPages = [
+  'dashboard.html', 'new-order.html', 'order-detail.html', 'edit-order.html',
+  'reschedule.html', 'appointment-action.html', 'admin.html',
   'admin-order-detail.html', 'unauthorized.html', 'error.html',
 ];
+const pages = [...authPages, ...appPages];
 
 function page(name) {
   return fs.readFileSync(path.join(root, 'frontend', name), 'utf8');
@@ -34,8 +36,10 @@ test('each required page has an accessible shared application shell', () => {
     assert.equal(fs.existsSync(path.join(root, 'frontend', name)), true, `${name} is missing`);
     const html = page(name);
     assert.match(html, /<a[^>]+class="skip-link"[^>]+href="#main-content"/);
-    assert.match(html, /<header\b/);
-    assert.match(html, /<nav\b[^>]*aria-label=/);
+    if (appPages.includes(name)) {
+      assert.match(html, /<header\b/);
+      assert.match(html, /<nav\b[^>]*aria-label=/);
+    }
     assert.match(html, /<main\b[^>]*id="main-content"/);
     assert.match(html, /<footer\b/);
     assert.match(html, /role="status"/);
@@ -50,9 +54,9 @@ test('shell provides a non-sensitive identity area and a logo fallback', () => {
   assert.match(html, /id="identity-staff-id"/);
   assert.match(html, /id="identity-department"/);
   assert.match(html, /id="identity-role"/);
-  assert.match(html, /<img[^>]+alt="โลโก้ระบบจองยาเฉพาะราย"/);
+  assert.match(html, /<img[^>]+src="assets\/bhh-hatyai-logo\.webp"[^>]+alt="Bangkok Hospital Hat Yai"/);
   assert.match(html, /class="brand-fallback"/);
-  assert.equal(fs.existsSync(path.join(root, 'frontend/assets/logo-placeholder.svg')), true);
+  assert.equal(fs.existsSync(path.join(root, 'frontend/assets/bhh-hatyai-logo.webp')), true);
 });
 
 test('login labels the StaffID text field for credential managers', () => {
@@ -78,7 +82,7 @@ test('logo fallback becomes visible after a logo loading failure', () => {
 });
 
 test('every identity shell offers an accessible logout action', () => {
-  for (const name of pages) {
+  for (const name of appPages) {
     const html = page(name);
     assert.match(html, /data-action="logout"/, `${name} has no logout action`);
     assert.match(html, /id="identity-role"/, `${name} has no role identity placeholder`);
@@ -125,4 +129,15 @@ test('repository root routes GitHub Pages to the frontend application', () => {
   assert.match(rootIndex, /http-equiv="refresh"[^>]+url=frontend\//i);
   assert.match(rootIndex, /window\.location\.replace\(['"]frontend\/['"]\)/);
   assert.equal(fs.existsSync(path.join(root, '.nojekyll')), true, '.nojekyll is required for branch-based static Pages');
+});
+
+
+test('login entry pages render the login form directly without authenticated navigation', () => {
+  for (const name of authPages) {
+    const html = page(name);
+    assert.match(html, /id="login-form"/);
+    assert.match(html, /assets\/bhh-hatyai-logo\.webp/);
+    assert.doesNotMatch(html, /<nav\b/);
+    assert.doesNotMatch(html, /data-action="logout"/);
+  }
 });
