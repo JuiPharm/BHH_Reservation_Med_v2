@@ -118,3 +118,11 @@ test('focus indicator has at least 3:1 contrast against white', () => {
     `${match[1]} does not meet the 3:1 focus-indicator contrast requirement against white`,
   );
 });
+
+
+test('repository root routes GitHub Pages to the frontend application', () => {
+  const rootIndex = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  assert.match(rootIndex, /http-equiv="refresh"[^>]+url=frontend\//i);
+  assert.match(rootIndex, /window\.location\.replace\(['"]frontend\/['"]\)/);
+  assert.equal(fs.existsSync(path.join(root, '.nojekyll')), true, '.nojekyll is required for branch-based static Pages');
+});
