@@ -25,8 +25,8 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Configure public Apps Script endpoint
         env:
-          APPS_SCRIPT_URL: ${{ vars.APPS_SCRIPT_URL }}
-        run: APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbx7xTpLRQ_sLHhwV2ftw2VLOQp5x2qJeDRxyx1fIEcCOimu9dacNOBIyvbOBPy38vTv6A/exec}" node scripts/configure-pages.mjs
+          APPS_SCRIPT_URL: https://script.google.com/macros/s/AKfycbwv-KXqQPyqa1VaLZuss54tSkbsGm4xCJkhMYsANFs9OM79CAh70uACJRrVKM9v0lhT/exec
+        run: node scripts/configure-pages.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend/
