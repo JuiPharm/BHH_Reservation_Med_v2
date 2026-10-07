@@ -23,7 +23,7 @@ button:disabled { opacity: .52; cursor: not-allowed; transform: none; box-shadow
 .header-inner { display: flex; flex-direction: column; gap: .75rem; align-items: stretch; padding: .85rem 0; min-width: 0; }
 .brand { display: flex; align-items: center; color: #fff; font-weight: 800; gap: .65rem; min-width: 0; min-height: 44px; }
 .brand:hover { color: #fff; }
-.brand-logo { width: min(18rem,70vw); height: 3.3rem; object-fit: contain; object-position: left center; background: #fff; border-radius: .8rem; padding: .32rem .5rem; }
+.brand-logo { width: min(12rem,55vw); height: 3rem; object-fit: contain; object-position: left center; background: #fff; border-radius: .7rem; padding: .22rem .35rem; }
 .brand > span:last-child { display: none; }
 .brand-fallback[hidden] { display:none; }
 .brand-fallback:not([hidden]) { display: inline; color:#fff; }
