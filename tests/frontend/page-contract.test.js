@@ -68,7 +68,7 @@ test('login labels the StaffID text field for credential managers', () => {
 
 test('login client uses the backend credential payload contract', () => {
   const source = fs.readFileSync(path.join(root, 'frontend/js/auth.js'), 'utf8');
-  assert.match(source, /apiRequest\('LOGIN',\s*\{/);
+  assert.match(source, /apiRequest\('LOGIN_V2',\s*\{/);
   assert.match(source, /\bstaffId\b/);
   assert.match(source, /\bpin\b/);
 });

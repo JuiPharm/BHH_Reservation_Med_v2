@@ -20,9 +20,12 @@ const ALLOWED_BACKEND_ACTIONS = new Set([
   'GET_RESCHEDULE_ORDER',
   'GET_RESCHEDULE_REFERENCE',
   'GET_STAFF_DASHBOARD',
+  'GET_V2_DASHBOARD',
   'LIST_USERS',
   'LOGIN',
+  'LOGIN_V2',
   'LOGOUT',
+  'LOGOUT_V2',
   'MARK_ORDER_PURCHASED',
   'RESEND_FAILED_EMAIL',
   'RESET_USER_PIN',
@@ -67,4 +70,16 @@ test('approved backend action list keeps critical mutation and appointment actio
   ]) {
     assert.equal(ALLOWED_BACKEND_ACTIONS.has(action), true, action);
   }
+});
+
+
+test('v2 frontend authentication and dashboard use isolated v2 backend actions', () => {
+  const auth = fs.readFileSync(path.join(jsDir, 'auth.js'), 'utf8');
+  const dashboard = fs.readFileSync(path.join(jsDir, 'dashboard.js'), 'utf8');
+  const session = fs.readFileSync(path.join(jsDir, 'session.js'), 'utf8');
+  assert.match(auth, /apiRequest\('LOGIN_V2'/);
+  assert.match(auth, /apiRequest\('LOGOUT_V2'/);
+  assert.match(dashboard, /request\('GET_V2_DASHBOARD'/);
+  assert.match(session, /medication-reservation\.session\.v2/);
+  assert.doesNotMatch(session, /medication-reservation\.session\.v1/);
 });

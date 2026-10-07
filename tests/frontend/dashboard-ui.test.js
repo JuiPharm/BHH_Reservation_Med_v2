@@ -24,7 +24,7 @@ test('dashboard sends only its filter, search, sort, and page query to the depar
     return { data: { recentOrders: [] } };
   });
   assert.deepEqual(received, {
-    action: 'GET_STAFF_DASHBOARD',
+    action: 'GET_V2_DASHBOARD',
     payload: { filters: { Status: 'SUBMITTED' }, search: 'ORD', sort: 'CreatedAt:desc', page: 2 },
   });
 });

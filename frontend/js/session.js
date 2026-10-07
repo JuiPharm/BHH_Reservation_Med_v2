@@ -1,4 +1,4 @@
-const SESSION_KEY = 'medication-reservation.session.v1';
+const SESSION_KEY = 'medication-reservation.session.v2';
 const storageName = 'session' + 'Storage';
 
 function sessionStore() {
@@ -31,6 +31,7 @@ function safeSession(value) {
     fullName: typeof value.fullName === 'string' ? value.fullName : '',
     department: typeof value.department === 'string' ? value.department : '',
     role: typeof value.role === 'string' ? value.role : '',
+    apiVersion: typeof value.apiVersion === 'string' ? value.apiVersion : '',
   };
 }
 
@@ -58,6 +59,7 @@ export function saveSession(authResult) {
     fullName: user.FullName || (data && data.fullName),
     department: user.Department || (data && data.department),
     role: user.Role || (data && data.role),
+    apiVersion: data && data.apiVersion ? String(data.apiVersion) : 'v2',
   });
   if (!session) throw new Error('ไม่พบข้อมูลการเข้าสู่ระบบที่ใช้งานได้');
   const store = sessionStore();
@@ -95,7 +97,7 @@ export function loginSuccessDestination(storage = sessionStore()) {
   return reference ? 'reschedule.html' : 'dashboard.html';
 }
 
-export function rescheduleReferenceStorageKey() { return 'medication-reservation.reschedule-reference.v1'; }
+export function rescheduleReferenceStorageKey() { return 'medication-reservation.reschedule-reference.v2'; }
 
 export function requireAuth(options = {}) {
   const session = getSession();

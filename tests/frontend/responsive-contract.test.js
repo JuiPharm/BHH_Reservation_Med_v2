@@ -66,7 +66,7 @@ test('Pages deployment publishes only the frontend directory with official major
   assert.match(config, /permissions:\s*[\s\S]*?pages:\s*write[\s\S]*?id-token:\s*write/m);
   assert.match(config, /actions\/upload-pages-artifact@v3/);
   assert.match(config, /node\s+scripts\/configure-pages\.mjs/);
-  assert.match(config, /APPS_SCRIPT_URL:\s*\$\{\{\s*vars\.APPS_SCRIPT_URL\s*\}\}/);
+  assert.match(config, /APPS_SCRIPT_URL:\s*https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec/);
   assert.match(config, /path:\s*frontend\/?\s*$/m);
   assert.match(config, /actions\/deploy-pages@v4/);
   assert.doesNotMatch(config, /path:\s*["']?(?:\.|backend|tests)["']?\s*$/m);

@@ -6,6 +6,11 @@ function roleLabel(role) {
   const value = String(role || '').toUpperCase();
   if (value === 'ADMIN') return 'ผู้ดูแลระบบ';
   if (value === 'STAFF') return 'เจ้าหน้าที่';
+  if (value === 'SYSTEM_ADMIN') return 'ผู้ดูแลระบบ';
+  if (value === 'PHARMACY_MANAGER') return 'ผู้จัดการงานเภสัชกรรม';
+  if (value === 'PHARMACY_OPERATOR') return 'เภสัชกร/เจ้าหน้าที่ปฏิบัติการ';
+  if (value === 'REQUESTER') return 'ผู้ขอใช้ยา';
+  if (value === 'REPORT_VIEWER') return 'ผู้ดูรายงาน';
   return role || '—';
 }
 
@@ -25,14 +30,17 @@ function renderIdentity(session) {
 function installRoleAwareNavigation(session) {
   const role = String(session && session.role || '').toUpperCase();
   document.querySelectorAll('[data-admin-only]').forEach((node) => {
-    node.hidden = role !== 'ADMIN';
+    node.hidden = !['SYSTEM_ADMIN', 'PHARMACY_MANAGER'].includes(role);
+  });
+  document.querySelectorAll('[data-v2-pending]').forEach((node) => {
+    node.hidden = true;
   });
 }
 
 async function logout() {
   const session = getSession();
   try {
-    if (session) await apiRequest('LOGOUT', {});
+    if (session) await apiRequest('LOGOUT_V2', {});
   } catch (_error) {
     // Local sign-out still proceeds if the network is unavailable.
   } finally {
@@ -53,7 +61,7 @@ function installLogin() {
     const loading = document.getElementById('page-loading');
     showFieldErrors({}, form);
     const staffId = form.elements['staff-id'].value.trim();
-    const pin = form.elements.pin.value.trim();
+    const pin = form.elements.pin.value;
     const localErrors = [];
     if (!staffId) localErrors.push({ field: 'staff-id', message: 'รหัสเจ้าหน้าที่เป็นข้อมูลที่จำเป็น' });
     if (!pin) localErrors.push({ field: 'pin', message: 'รหัส PIN เป็นข้อมูลที่จำเป็น' });
@@ -64,7 +72,7 @@ function installLogin() {
     submit.disabled = true;
     setLoading(loading, true, 'กำลังตรวจสอบสิทธิ์เข้าใช้งาน');
     try {
-      const result = await apiRequest('LOGIN', { staffId, pin });
+      const result = await apiRequest('LOGIN_V2', { staffId, pin });
       saveSession(result);
       showFieldErrors({}, form);
       window.location.replace(loginSuccessDestination());

@@ -107,11 +107,12 @@ test('saving a session excludes patient and HN values from browser session stora
     fullName: 'เจ้าหน้าที่ทดสอบ',
     department: 'เภสัชกรรม',
     role: 'STAFF',
+    apiVersion: 'v2',
   });
 });
 
 test('every protected response can refresh only the stored expiry without exposing or replacing identity', () => {
-  const original = { sessionToken: 'token', expiresAt: '2030-01-01T00:00:00.000Z', staffId: '00123', fullName: 'Ada', department: 'ER', role: 'STAFF' };
+  const original = { sessionToken: 'token', expiresAt: '2030-01-01T00:00:00.000Z', staffId: '00123', fullName: 'Ada', department: 'ER', role: 'STAFF', apiVersion: 'v2' };
   const { api, value } = loadSessionModule(JSON.stringify(original));
   assert.equal(api.refreshSessionExpiry('2030-01-01T00:15:00.000Z'), true);
   assert.deepEqual(JSON.parse(value()), { ...original, expiresAt: '2030-01-01T00:15:00.000Z' });

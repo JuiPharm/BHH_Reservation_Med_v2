@@ -25,7 +25,7 @@ export async function loadDashboard(filters = {}, request = apiRequest) {
     sort: typeof filters.sort === 'string' ? filters.sort : '',
     page: Number.isInteger(filters.page) && filters.page > 0 ? filters.page : 1,
   };
-  const response = await request('GET_STAFF_DASHBOARD', query);
+  const response = await request('GET_V2_DASHBOARD', query);
   return response && response.data ? response.data : response;
 }
 
