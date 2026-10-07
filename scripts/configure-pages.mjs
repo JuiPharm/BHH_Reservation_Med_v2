@@ -25,7 +25,7 @@ function configuredUrl(value) {
 try {
   const apiUrl = configuredUrl(process.env.APPS_SCRIPT_URL);
   const target = outputPath(process.argv.slice(2));
-  const source = `// Generated during GitHub Pages deployment. Do not commit a deployment URL here.\nexport const API_URL = ${JSON.stringify(apiUrl)};\n\nexport const APP_CONFIG = Object.freeze({\n  appNameTh: 'ระบบจองยาเฉพาะราย',\n  appNameEn: 'Medication Reservation',\n  organizationName: 'หน่วยงานบริการสุขภาพ',\n  apiUrl: API_URL,\n});\n`;
+  const source = `// Generated during GitHub Pages deployment. Do not commit a deployment URL here.\nexport const API_URL = ${JSON.stringify(apiUrl)};\n\nexport const APP_CONFIG = Object.freeze({\n  appNameTh: 'ระบบจองยาเฉพาะราย',\n  appNameEn: 'Medication Reservation & Fulfillment',\n  organizationName: 'Bangkok Hospital Hat Yai',\n  apiUrl: API_URL,\n});\n`;
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, source, 'utf8');
   console.log(`Generated ${path.relative(process.cwd(), target)} from APPS_SCRIPT_URL.`);

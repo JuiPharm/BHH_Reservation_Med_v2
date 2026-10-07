@@ -37,17 +37,11 @@ test('interactive controls, focus, dialogs, motion and print have safe responsiv
   assert.match(forms, /overflow-wrap:\s*anywhere/);
 });
 
-test('the frontend bundles a licensed Thai font and gives brand and order links 44px targets', () => {
+test('the frontend uses a Thai-capable system font stack and gives brand and order links 44px targets', () => {
   const main = css('main.css');
   const dashboardSource = source('dashboard.js');
   const adminSource = source('admin.js');
-  const font = path.join(frontend, 'assets', 'fonts', 'noto-sans-thai-thai-400-normal.woff2');
-  const notice = path.join(frontend, 'assets', 'fonts', 'LICENSE-NotoSansThai.txt');
-  assert.equal(fs.existsSync(font), true, 'bundled Thai WOFF2 font is missing');
-  assert.equal(fs.statSync(font).size > 8_000, true, 'bundled Thai WOFF2 font is unexpectedly small');
-  assert.match(fs.readFileSync(notice, 'utf8'), /SIL Open Font License/i);
-  assert.match(main, /@font-face\s*\{[^}]*font-family:\s*['"]Noto Sans Thai['"][^}]*url\(['"]\.\.\/assets\/fonts\/noto-sans-thai-thai-400-normal\.woff2['"]\)\s*format\(['"]woff2['"]\)/s);
-  assert.match(main, /html\s*\{[^}]*font-family:\s*['"]Noto Sans Thai['"]/s);
+  assert.match(main, /html\s*\{[^}]*font-family:[^}]*Noto Sans Thai[^}]*Segoe UI/s);
   assert.match(main, /\.brand\s*\{[^}]*min-height:\s*44px/s);
   assert.match(main, /\.order-link\s*\{[^}]*min-height:\s*44px/s);
   assert.match(dashboardSource, /link\.className\s*=\s*['"]order-link['"]/);
