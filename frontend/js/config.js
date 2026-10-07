@@ -1,5 +1,5 @@
-// BHH Reservation Med v2 intentionally uses the existing production-compatible Apps Script backend.
-export const API_URL = 'https://script.google.com/macros/s/AKfycbx7xTpLRQ_sLHhwV2ftw2VLOQp5x2qJeDRxyx1fIEcCOimu9dacNOBIyvbOBPy38vTv6A/exec';
+// BHH Reservation Med v2 intentionally uses the deployed v2-compatible Apps Script backend.
+export const API_URL = 'https://script.google.com/macros/s/AKfycbwv-KXqQPyqa1VaLZuss54tSkbsGm4xCJkhMYsANFs9OM79CAh70uACJRrVKM9v0lhT/exec';
 
 export const APP_CONFIG = Object.freeze({
   appNameTh: 'ระบบจองยาเฉพาะราย',
