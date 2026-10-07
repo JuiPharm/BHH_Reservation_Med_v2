@@ -1,32 +1,48 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>เข้าสู่ระบบ | BHH Medication Reservation</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/auth.css"></head>
-<body>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>เข้าสู่ระบบ | BHH Medication Reservation</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
 <a class="skip-link" href="#main-content">ข้ามไปเนื้อหาหลัก</a>
-<header class="site-header"><div class="header-inner">
-  <a class="brand" href="index.html"><img class="brand-logo" src="assets/bdms-bhh-logo.svg" alt="โลโก้ระบบจองยาเฉพาะราย"><span class="brand-fallback" hidden>BHH Medication Reservation</span><span>BHH Medication Reservation</span></a>
-  <nav class="site-nav" aria-label="เมนูหลัก"><a href="login.html">เข้าสู่ระบบ</a><button type="button" class="secondary" data-action="logout">ออกจากระบบ</button></nav>
-  <div class="identity" aria-label="ข้อมูลผู้ใช้"><span id="identity-name">—</span><span id="identity-staff-id">—</span><span id="identity-department">—</span><span id="identity-role">—</span></div>
-</div></header>
 <main id="main-content" class="auth-layout" tabindex="-1">
   <div class="auth-shell">
-    <section class="auth-brand-panel" aria-label="ข้อมูลระบบ">
-      <span class="auth-brand-kicker">Bangkok Hospital Hat Yai</span>
-      <img class="brand-logo" src="assets/bdms-bhh-logo.svg" alt="โลโก้ระบบจองยาเฉพาะราย">
-      <h1>ระบบจองยาเฉพาะราย</h1>
-      <p>Medication Reservation & Fulfillment สำหรับติดตามคำขอ การจัดหา ยาพร้อม และการรับยาของผู้รับบริการอย่างเป็นระบบ</p>
+    <section class="auth-brand-panel" aria-label="Bangkok Hospital Hat Yai Medication Reservation">
+      <div class="auth-logo-card">
+        <img class="auth-hospital-logo" src="assets/bhh-hatyai-logo.webp" alt="Bangkok Hospital Hat Yai">
+      </div>
+      <p class="auth-brand-kicker">PHARMACY DEPARTMENT</p>
+      <h1>Medication Reservation <span>&amp; Fulfillment</span></h1>
+      <p class="auth-thai-title">ระบบจองยาเฉพาะราย</p>
+      <p class="auth-brand-copy">ติดตามคำขอ การจัดหา ความพร้อมของยา และการรับยาของผู้รับบริการใน workflow เดียว</p>
+      <div class="auth-flow" aria-label="ขั้นตอนหลักของระบบ">
+        <span>Request</span><b aria-hidden="true">→</b>
+        <span>Fulfillment</span><b aria-hidden="true">→</b>
+        <span>Ready</span><b aria-hidden="true">→</b>
+        <span>Pickup</span>
+      </div>
     </section>
     <section class="auth-panel" aria-labelledby="login-title">
+      <p class="auth-panel-kicker">BHH STAFF ACCESS</p>
       <h2 id="login-title">เข้าสู่ระบบ</h2>
-      <p class="subtitle">ใช้รหัสเจ้าหน้าที่และ PIN ที่ได้รับจากหน่วยงาน</p>
+      <p class="subtitle">สำหรับเจ้าหน้าที่โรงพยาบาลกรุงเทพหาดใหญ่</p>
       <form id="login-form" novalidate>
         <div class="field"><label for="staff-id">รหัสเจ้าหน้าที่</label><input id="staff-id" name="staff-id" type="text" autocomplete="username" required aria-describedby="staff-id-error" placeholder="Staff ID"><span id="staff-id-error" data-field-error="staff-id" role="alert"></span></div>
         <div class="field"><label for="pin">รหัส PIN</label><input id="pin" name="pin" type="password" autocomplete="current-password" required aria-describedby="pin-error" placeholder="PIN"><span id="pin-error" data-field-error="pin" role="alert"></span></div>
-        <button type="submit">เข้าสู่ระบบ</button>
+        <button type="submit" class="auth-submit">เข้าสู่ระบบ</button>
       </form>
-      <div class="auth-security-note"><span aria-hidden="true">🔒</span><span>ระบบสำหรับเจ้าหน้าที่ที่ได้รับอนุญาต ข้อมูลผู้รับบริการจะแสดงตามสิทธิ์การใช้งาน</span></div>
+      <div class="auth-security-note"><span class="auth-lock" aria-hidden="true">●</span><span>ระบบสำหรับเจ้าหน้าที่ที่ได้รับอนุญาต การเข้าถึงข้อมูลเป็นไปตามสิทธิ์ของผู้ใช้งาน</span></div>
     </section>
   </div>
-  <p id="page-loading" class="status-message" role="status" aria-live="polite" hidden></p><p id="page-error" class="error-message" role="alert" aria-live="assertive"></p>
+  <p id="page-loading" class="status-message auth-status" role="status" aria-live="polite" hidden></p>
+  <p id="page-error" class="error-message auth-status" role="alert" aria-live="assertive"></p>
 </main>
-<footer class="site-footer">Bangkok Hospital Hat Yai · Medication Reservation & Fulfillment</footer><div id="toast-region" role="status" aria-live="polite" hidden></div><script type="module" src="js/auth.js"></script>
-</body></html>
+<footer class="auth-footer">Bangkok Hospital Hat Yai · Pharmacy Department</footer>
+<div id="toast-region" role="status" aria-live="polite" hidden></div>
+<script type="module" src="js/auth.js"></script>
+</body>
+</html>
