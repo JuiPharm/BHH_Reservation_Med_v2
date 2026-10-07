@@ -61,7 +61,7 @@ function installLogin() {
     const loading = document.getElementById('page-loading');
     showFieldErrors({}, form);
     const staffId = form.elements['staff-id'].value.trim();
-    const pin = form.elements.pin.value.trim();
+    const pin = form.elements.pin.value;
     const localErrors = [];
     if (!staffId) localErrors.push({ field: 'staff-id', message: 'รหัสเจ้าหน้าที่เป็นข้อมูลที่จำเป็น' });
     if (!pin) localErrors.push({ field: 'pin', message: 'รหัส PIN เป็นข้อมูลที่จำเป็น' });
