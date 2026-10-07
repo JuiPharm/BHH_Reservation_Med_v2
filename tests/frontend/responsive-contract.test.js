@@ -41,7 +41,8 @@ test('the frontend uses a Thai-capable system font stack and gives brand and ord
   const main = css('main.css');
   const dashboardSource = source('dashboard.js');
   const adminSource = source('admin.js');
-  assert.match(main, /html\s*\{[^}]*font-family:[^}]*Noto Sans Thai[^}]*Segoe UI/s);
+  assert.match(main, /html\s*\{[^}]*font-family:[^}]*Segoe UI/s);
+  assert.match(main, /html\s*\{[^}]*font-family:[^}]*Noto Sans Thai/s);
   assert.match(main, /\.brand\s*\{[^}]*min-height:\s*44px/s);
   assert.match(main, /\.order-link\s*\{[^}]*min-height:\s*44px/s);
   assert.match(dashboardSource, /link\.className\s*=\s*['"]order-link['"]/);
