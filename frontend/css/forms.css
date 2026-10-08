@@ -1,20 +1,20 @@
-.workflow-form { display:grid; gap:1rem; }
-.form-grid { display:grid; grid-template-columns:1fr; gap:.8rem 1rem; }
-.workflow-form fieldset { margin:0; border:1px solid var(--border); border-radius:var(--radius); padding:1rem; background:#fbfdff; }
-.workflow-form fieldset > legend { padding:0 .4rem; color:var(--primary); font-weight:850; }
-.workflow-form label,.medication-item label { display:grid; gap:.3rem; min-width:0; overflow-wrap:anywhere; color:#294864; font-size:.84rem; font-weight:750; }
-.workflow-form input,.workflow-form select,.workflow-form textarea,.medication-item input,.medication-item select { width:100%; min-width:0; border:1px solid var(--border); border-radius:.8rem; background:#fff; color:var(--text); padding:.65rem .75rem; min-height:44px; }
-.workflow-form input:focus,.workflow-form select:focus,.workflow-form textarea:focus,.medication-item input:focus,.medication-item select:focus { outline:0; border-color:var(--border-focus); box-shadow:0 0 0 3px rgba(37,77,142,.16); }
-.field-help { color:var(--muted); font-size:.75rem; line-height:1.45; font-weight:500; overflow-wrap:anywhere; }
-.form-actions { display:flex; flex-wrap:wrap; gap:.65rem; align-items:center; padding-top:.25rem; }
-.medication-items { display:grid; gap:.8rem; margin-bottom:.8rem; }
-.medication-item { display:grid; grid-template-columns:1fr; gap:.7rem .9rem; min-width:0; border:1px solid var(--border); border-left:4px solid var(--primary); border-radius:var(--radius); padding:1rem; background:#fff; box-shadow:var(--shadow-sm); }
-.medication-item legend { padding:0 .35rem; color:var(--primary); font-weight:850; }
+.workflow-form { display:grid; gap:1.15rem; }
+.form-grid { display:grid; grid-template-columns:1fr; gap:.85rem 1.15rem; }
+.workflow-form fieldset { margin:0; border:1px solid var(--border); border-radius:var(--radius); padding:1.15rem; background:var(--canvas-alt); }
+.workflow-form fieldset > legend { padding:0 .45rem; color:var(--primary); font-weight:850; font-size:.92rem; }
+.workflow-form label,.medication-item label { display:grid; gap:.35rem; min-width:0; overflow-wrap:anywhere; color:var(--text-secondary); font-size:.83rem; font-weight:800; }
+.workflow-form input,.workflow-form select,.workflow-form textarea,.medication-item input,.medication-item select { width:100%; min-width:0; border:1px solid var(--border); border-radius:.75rem; background:#fff; color:var(--text); padding:.65rem .85rem; min-height:44px; transition:border-color var(--transition-fast),box-shadow var(--transition-fast); }
+.workflow-form input:focus,.workflow-form select:focus,.workflow-form textarea:focus,.medication-item input:focus,.medication-item select:focus { outline:0; border-color:var(--border-focus); box-shadow:0 0 0 3px rgba(59,130,246,.18); }
+.field-help { color:var(--muted); font-size:.76rem; line-height:1.45; font-weight:500; overflow-wrap:anywhere; }
+.form-actions { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; padding-top:.35rem; }
+.medication-items { display:grid; gap:.85rem; margin-bottom:.85rem; }
+.medication-item { display:grid; grid-template-columns:1fr; gap:.75rem 1rem; min-width:0; border:1px solid var(--border); border-left:4px solid var(--primary); border-radius:var(--radius); padding:1.15rem; background:#fff; box-shadow:var(--shadow-sm); }
+.medication-item legend { padding:0 .4rem; color:var(--primary); font-weight:850; font-size:.9rem; }
 .medication-item button { grid-column:1/-1; justify-self:start; }
 [data-field-error],[data-medication-field-error] { min-width:0; overflow-wrap:anywhere; }
-.form-section { display:grid; gap:.8rem; }
-.form-section-title { margin:0; color:var(--primary); font-size:1rem; }
-.form-section-note { margin:-.35rem 0 .2rem; color:var(--muted); font-size:.8rem; overflow-wrap:anywhere; }
+.form-section { display:grid; gap:.85rem; }
+.form-section-title { margin:0; color:var(--text); font-size:1.05rem; font-weight:800; }
+.form-section-note { margin:-.35rem 0 .2rem; color:var(--muted); font-size:.82rem; overflow-wrap:anywhere; }
 
 @media (min-width: 48rem) { .form-grid,.medication-item { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (min-width: 64rem) { .medication-item { grid-template-columns:repeat(3,minmax(0,1fr)); } }
