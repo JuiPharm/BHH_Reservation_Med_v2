@@ -80,7 +80,7 @@ async function initialize() {
   const items = form.querySelector('[data-medication-items]');
   const conflict = document.getElementById('version-conflict');
   const orderId = new URLSearchParams(window.location.search).get('orderId') || '';
-  let masterData;
+  let masterData = {};
   let version = 0;
   const submitUpdate = createUpdateSubmitter();
   const load = async () => {
@@ -91,7 +91,7 @@ async function initialize() {
       version = Number(order.Version);
       const editable = editableOrderValues(order);
       ['RequesterPhone', 'HN', 'PatientName', 'WardClinic', 'RequiredDate'].forEach((field) => { form.elements[field].value = editable[field]; });
-      addOptions(form.elements.Priority, masterData.PRIORITY, String(order.Priority || ''));
+      addOptions(form.elements.Priority, (masterData && masterData.PRIORITY) || [], String(order.Priority || ''));
       items.replaceChildren();
       (data.items || []).forEach((item) => appendMedicationItem(items, item, masterData, { lockPersisted: true }));
       if (!data.items || !data.items.length) appendMedicationItem(items, {}, masterData, { lockPersisted: true });
@@ -103,8 +103,9 @@ async function initialize() {
   try { masterData = await loadMasterData(['DOSAGE_FORM', 'UNIT', 'PRIORITY']); await load(); }
   catch (error) { showToast(error.message || 'ไม่สามารถโหลดข้อมูลแบบฟอร์ม', 'error'); submit.disabled = true; }
   form.elements.HN.addEventListener('input', () => { form.elements.HN.value = formatHnInput(form.elements.HN.value); });
-  form.querySelector('[data-add-medication]').addEventListener('click', () => appendMedicationItem(items, {}, masterData, { lockPersisted: true }));
-  conflict.querySelector('button').addEventListener('click', load);
+  const addBtn = form.querySelector('[data-add-medication]');
+  if (addBtn) addBtn.addEventListener('click', () => appendMedicationItem(items, {}, masterData, { lockPersisted: true }));
+  if (conflict && conflict.querySelector('button')) conflict.querySelector('button').addEventListener('click', load);
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const value = model(form);

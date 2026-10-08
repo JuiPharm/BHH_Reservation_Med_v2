@@ -59,19 +59,25 @@ async function initialize() {
   const loading = document.getElementById('page-loading');
   const items = form.querySelector('[data-medication-items]');
   const submit = form.querySelector('[type="submit"]');
-  let masterData;
+  let masterData = {};
   try {
     setLoading(loading, true, 'กำลังโหลดข้อมูลแบบฟอร์ม');
     masterData = await loadMasterData(['DOSAGE_FORM', 'UNIT', 'PRIORITY']);
-    addOptions(form.elements.Priority, masterData.PRIORITY || []);
-    appendMedicationItem(items, {}, masterData);
   } catch (error) {
     showToast(error.message || 'ไม่สามารถโหลดข้อมูลแบบฟอร์ม', 'error');
-    submit.disabled = true;
-    return;
-  } finally { setLoading(loading, false); }
+  } finally {
+    setLoading(loading, false);
+  }
+
+  addOptions(form.elements.Priority, (masterData && masterData.PRIORITY) || []);
+  if (items && !items.querySelector('[data-medication-item]')) {
+    appendMedicationItem(items, {}, masterData);
+  }
+
   form.elements.HN.addEventListener('input', () => { form.elements.HN.value = formatHnInput(form.elements.HN.value); clearFieldError('HN', form); });
-  form.querySelector('[data-add-medication]').addEventListener('click', () => appendMedicationItem(items, {}, masterData));
+  const addBtn = form.querySelector('[data-add-medication]');
+  if (addBtn) addBtn.addEventListener('click', () => appendMedicationItem(items, {}, masterData));
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const model = formModel(form);
